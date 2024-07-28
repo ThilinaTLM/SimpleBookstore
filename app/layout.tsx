@@ -20,11 +20,9 @@ export default function RootLayout(props: RootLayoutProps) {
       <ColorSchemeScript/>
     </head>
     <body>
-    <MantineProvider>
-      <Layout>
-        {props.children}
-      </Layout>
-    </MantineProvider>
+        <Layout>
+          {props.children}
+        </Layout>
     </body>
     </html>
   );

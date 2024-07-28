@@ -1,36 +1,22 @@
 "use client"
 
-import { Container, Group, Anchor } from '@mantine/core';
-import { MantineLogo } from '@mantinex/mantine-logo';
+import React from "react";
+import {Container, Text} from '@mantine/core';
+import BookStoreLogo from "@/components/layout/BookStoreLogo";
 
-const links = [
-  { link: '#', label: 'Contact' },
-  { link: '#', label: 'Privacy' },
-  { link: '#', label: 'Blog' },
-  { link: '#', label: 'Careers' },
-];
+const Footer: React.FC = () => {
 
-export function Footer() {
-  const items = links.map((link) => (
-    <Anchor<'a'>
-      c="dimmed"
-      key={link.label}
-      href={link.link}
-      onClick={(event) => event.preventDefault()}
-      size="sm"
-    >
-      {link.label}
-    </Anchor>
-  ));
 
   return (
     <div className="tw-mt-[30rem] tw-border-t tw-border-gray-200">
-      <Container className="tw-flex tw-flex-col sm:tw-flex-row tw-justify-between tw-items-center tw-pt-[var(--mantine-spacing-xl)] tw-pb-[var(--mantine-spacing-xl)]">
-        <MantineLogo size={28} />
-        <Group className="tw-flex tw-flex-col tw-mt-3 sm:tw-mt-0">
-          {items}
-        </Group>
+      <Container className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-py-4">
+        <BookStoreLogo />
+        <Text c={"gray"} size={"sm"}>
+          &copy; 2024 Bookstore. All rights reserved.
+        </Text>
       </Container>
     </div>
   );
 }
+
+export default Footer;
