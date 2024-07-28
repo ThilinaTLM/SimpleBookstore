@@ -1,5 +1,6 @@
 
 export type Book = {
+  olid: string;
   title: string;
   type: string;
   firstPublishedDate: string;
