@@ -71,10 +71,12 @@ export default function BookListingPage() {
           const book = row.original;
           return (
             <Grid.Col span={{base: 12, xs: 6, sm: 4, md: 3}} key={index}>
-              <BookCard
-                {...book}
-                onAddToCart={addBookToCart}
-              />
+              <div className="tw-h-[400px]">
+                <BookCard
+                  {...book}
+                  onAddToCart={addBookToCart}
+                />
+              </div>
             </Grid.Col>
           )
         })}

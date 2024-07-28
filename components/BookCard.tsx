@@ -1,9 +1,11 @@
 import React from "react";
 import {Badge, Button, Card, Group, Text} from '@mantine/core';
 import {Book} from "@/models/book";
+import {cn} from "@/lib/tw";
 
 export type BookCardProps = Book & {
   onAddToCart?: (book: Book) => void;
+  className?: string;
 };
 
 const BookCard: React.FC<BookCardProps> = (props) => {
@@ -13,10 +15,10 @@ const BookCard: React.FC<BookCardProps> = (props) => {
       padding="lg"
       radius="md"
       withBorder
-      className="tw-relative tw-bg-cover tw-bg-center tw-bg-no-repeat tw-h-[400px]"
+      className={cn("tw-relative tw-bg-cover tw-bg-center tw-bg-no-repeat tw-h-full")}
       style={{backgroundImage: `url(${props.coverLink})`}}
     >
-      <div className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-bg-black tw-text-white tw-bg-opacity-80 tw-p-4 tw-rounded-b-md">
+      <div className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-bg-black tw-text-white tw-bg-opacity-70 tw-p-4 tw-rounded-b-md">
         <Group justify="end" mb="xs">
           <Badge color="pink" className="tw-text-white">
             {new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(props.price)}
