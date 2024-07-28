@@ -2,7 +2,6 @@
 
 import React from "react";
 import {Container, Text} from '@mantine/core';
-import BookStoreLogo from "@/components/layout/BookStoreLogo";
 
 const Footer: React.FC = () => {
 
@@ -10,7 +9,6 @@ const Footer: React.FC = () => {
   return (
     <div className="tw-mt-[30rem] tw-border-t tw-border-gray-200">
       <Container className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-py-4">
-        <BookStoreLogo />
         <Text c={"gray"} size={"sm"}>
           &copy; 2024 Bookstore. All rights reserved.
         </Text>

@@ -1,7 +1,7 @@
 import '@mantine/core/styles.css';
 import './global.css';
 import React from "react";
-import {ColorSchemeScript, MantineProvider} from '@mantine/core';
+import {ColorSchemeScript} from '@mantine/core';
 import Layout from "@/components/layout/Layout";
 
 export const metadata = {
@@ -20,9 +20,9 @@ export default function RootLayout(props: RootLayoutProps) {
       <ColorSchemeScript/>
     </head>
     <body>
-        <Layout>
-          {props.children}
-        </Layout>
+    <Layout>
+      {props.children}
+    </Layout>
     </body>
     </html>
   );

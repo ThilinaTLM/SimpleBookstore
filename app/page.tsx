@@ -2,16 +2,16 @@
 
 import {Container, Grid} from "@mantine/core";
 import {useQuery} from "@tanstack/react-query";
-import {client} from "@/api/client";
 import {Book} from "@/models/book";
 import BookCard from "@/components/BookCard";
+import bookApi from "@/api/book";
 
 export default function Home() {
 
   const {data} = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
-      const response = await client.get<any>("/api/book");
+      const response = await bookApi.book.getBooks()
       return response.body["data"] as Book[];
     },
   })
@@ -29,8 +29,6 @@ export default function Home() {
           )
         })}
       </Grid>
-
-
     </Container>
   );
 }
