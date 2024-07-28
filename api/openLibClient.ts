@@ -1,7 +1,9 @@
 import {ApiClient} from "@/lib/httpClient/client";
 
+const BASE_URL = process.env.OPEN_LIBRARY_API_HOST || "https://openlibrary.org";
+
 export const openLibClient = new ApiClient({
-  baseUrl: "https://openlibrary.org",
+  baseUrl: BASE_URL,
   globalHeaders: {
     "Content-Type": "application/json",
     Accept: "application/json",
