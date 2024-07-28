@@ -1,21 +1,24 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import {Book} from "@/models/book";
 
-interface CartItem {
+export type CartItem = {
   id: string
   name: string
   price: number
   quantity: number
+  data: Book;
 }
 
-interface CartStoreState {
+export type CartStoreState = {
   items: CartItem[]
   totalPrice: number
   addItem: (item: CartItem) => void
   removeItem: (id: string) => void
   clearCart: () => void
   updateQuantity: (id: string, quantity: number) => void
-  calculateTotal: () => void
+  calculateTotal: () => void,
+  addBookToCart: (book: Book) => void
 }
 
 export const useCartStore = create<CartStoreState>()(
@@ -63,6 +66,31 @@ export const useCartStore = create<CartStoreState>()(
           totalPrice: state.items.reduce((total, item) => total + item.price * item.quantity, 0)
         }));
       },
+      addBookToCart: (book: Book) => {
+        const cartItem: CartItem = {
+          id: book.olid,
+          name: book.title,
+          price: book.price,
+          quantity: 1,
+          data: book
+        };
+
+        set((state) => {
+          const existingItem = state.items.find(i => i.id === cartItem.id);
+          if (existingItem) {
+            return {
+              items: state.items.map(i =>
+                i.id === cartItem.id ? { ...i, quantity: i.quantity + 1 } : i
+              )
+            };
+          } else {
+            return {
+              items: [...state.items, cartItem]
+            };
+          }
+        });
+        get().calculateTotal();
+      },
     }),
     {
       name: 'cart-store',
@@ -70,3 +98,4 @@ export const useCartStore = create<CartStoreState>()(
   )
 )
 
+export const useCartCount = () => useCartStore((state) => state.items.length)
