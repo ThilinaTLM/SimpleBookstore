@@ -5,6 +5,7 @@ import {useCartStore} from "@/store/cartStore";
 import CartItemCard from "@/components/cards/CartItemCard";
 import {formatPrice} from "@/lib/format";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 export default function CartPage() {
   const navigate = useRouter();
@@ -36,9 +37,12 @@ export default function CartPage() {
           </div>
         </div>
       ) : (
-        <Grid justify="center">
+        <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-2 tw-min-h-[500px]">
           <Text>Your cart is empty.</Text>
-        </Grid>
+          <Button component={Link} href={"/"}>
+            Go back to shop
+          </Button>
+        </div>
       )}
     </Container>
   );

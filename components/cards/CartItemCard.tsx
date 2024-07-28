@@ -3,6 +3,8 @@ import {CartItem, useCartStore} from "@/store/cartStore";
 import BookCard from "@/components/cards/BookCard";
 import {Button, NumberInput, Text} from "@mantine/core";
 import {formatPrice} from "@/lib/format";
+import FancyLabelWrap from "@/components/FancyLabelWrap";
+import {Trash} from "lucide-react";
 
 export type CartItemCardProps = {
   item: CartItem;
@@ -17,18 +19,23 @@ const CartItemCard: React.FC<CartItemCardProps> = ({item}) => {
         <BookCard {...item.data} />
       </div>
       <div className="tw-flex tw-flex-col tw-space-y-2">
-        <Text><strong>Price:</strong> {formatPrice(item.price)}</Text>
-        <div className="flex flex-row">
-          <Text><strong>Quantity:</strong></Text>
+        <FancyLabelWrap label="Price">
+          <Text fw="bold" size="lg">{formatPrice(item.price)}</Text>
+        </FancyLabelWrap>
+        <FancyLabelWrap label="Quality">
           <NumberInput
             value={item.quantity}
             onChange={(e) => updateQuantity(item.id, parseInt(e as string))}
             min={1}
+            className="tw-w-24"
           />
-        </div>
-        <Text><strong>Subtotal:</strong> ${(item.price * item.quantity).toFixed(2)}</Text>
-        <div className="tw-mt-2">
+        </FancyLabelWrap>
+        <FancyLabelWrap label="Subtotal">
+          <Text fw="bold" size="lg">{formatPrice(item.price * item.quantity)}</Text>
+        </FancyLabelWrap>
+        <div>
           <Button
+            leftSection={<Trash className="tw-w-4 tw-h-4" />}
             color="red"
             onClick={() => removeItem(item.id)}>
             Remove

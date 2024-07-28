@@ -23,6 +23,9 @@ const bookApi = {
       return bookClient.get<StandardResponse<Book[]>>("/api/book", {
         query
       });
+    },
+    checkout: () => {
+      return bookClient.post<StandardResponse<any>>("/api/checkout");
     }
   }
 }
