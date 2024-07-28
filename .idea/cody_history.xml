@@ -47,6 +47,31 @@
                 </messages>
                 <updatedAt value="2024-07-28T09:19:47.010609781" />
               </chat>
+              <chat>
+                <internalId value="289b35e0-06bc-477f-b766-778771c4607d" />
+              </chat>
+              <chat>
+                <internalId value="f8bfde8f-75b1-4405-8c48-e93453f7c4e4" />
+              </chat>
+              <chat>
+                <internalId value="4527a09a-211e-4f57-89f8-ba3e51c0f5e7" />
+              </chat>
+              <chat>
+                <internalId value="d389f3cd-9be0-4135-b2d8-931f2df2097a" />
+                <messages>
+                  <list>
+                    <message>
+                      <speaker value="HUMAN" />
+                      <text value="@.../book-store-app/store/cartStore.ts  Can you implement the addBookToCard method? Refer @.../book-store-app/models/book.ts " />
+                    </message>
+                    <message>
+                      <speaker value="ASSISTANT" />
+                      <text value="Certainly! I can implement the `addBookToCart` method in the `cartStore.ts` file. Here's how we can do it:&#10;&#10;```typescript&#10;addBookToCart: (book: Book) =&gt; {&#10;  const cartItem: CartItem = {&#10;    id: book.olid,&#10;    name: book.title,&#10;    price: book.price,&#10;    quantity: 1,&#10;    data: book&#10;  };&#10;&#10;  set((state) =&gt; {&#10;    const existingItem = state.items.find(i =&gt; i.id === cartItem.id);&#10;    if (existingItem) {&#10;      return {&#10;        items: state.items.map(i =&gt;&#10;          i.id === cartItem.id ? { ...i, quantity: i.quantity + 1 } : i&#10;        )&#10;      };&#10;    } else {&#10;      return {&#10;        items: [...state.items, cartItem]&#10;      };&#10;    }&#10;  });&#10;  get().calculateTotal();&#10;},&#10;```&#10;&#10;This implementation does the following:&#10;&#10;1. It creates a `CartItem` from the `Book` object.&#10;2. It checks if the book already exists in the cart.&#10;3. If it exists, it increments the quantity by 1.&#10;4. If it doesn't exist, it adds the new item to the cart.&#10;5. Finally, it recalculates the total price of the cart.&#10;&#10;This method can be added to the `CartStoreState` type and implemented in the `useCartStore` create function. It provides a convenient way to add books directly to the cart from anywhere in your application." />
+                    </message>
+                  </list>
+                </messages>
+                <updatedAt value="2024-07-28T16:20:33.726171328" />
+              </chat>
             </list>
           </chats>
         </AccountData>
