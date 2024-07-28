@@ -3,6 +3,9 @@
 This is a simple online bookstore application that allows users to view a list of books, add books to a shopping cart, and checkout.
 Open Library API is used to fetch the list of books. Prices are generated randomly for each book using a hash function to make it consistent for each book.
 
+> **Note:** Book listing page load may take some time as the application fetches the list of books from the Open Library API.
+> I haven't implemented any caching mechanism to store the book list.
+
 ## Pre-requisites
 - Node.js 20.x.x (LTS)
 - npm 10.x.x
