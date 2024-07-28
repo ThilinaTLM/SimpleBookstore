@@ -18,6 +18,7 @@ import bookApi, {BookQuery} from "@/api/book";
 import {useCartStore} from "@/store/cartStore";
 import React, {useState} from "react";
 import DebouncedInput from "@/components/input/DebouncedInput";
+import {ArrowDown, ArrowUp} from "lucide-react";
 
 export default function BookListingPage() {
 
@@ -50,11 +51,23 @@ export default function BookListingPage() {
       {
         id: "author",
         accessorKey: "author",
+        sortingFn: (a, b) => {
+          const authorA = a.original.authors[0]
+          const authorB = b.original.authors[0]
+          if (!authorA || !authorB) {
+            return 0
+          }
+          return authorA.localeCompare(authorB)
+        }
       },
       {
         id: "firstPublishedDate",
         accessorKey: "firstPublishedDate",
       },
+      {
+        id: "price",
+        accessorKey: "price",
+      }
     ],
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -74,7 +87,7 @@ export default function BookListingPage() {
       pagination: {
         pageSize: 24,
         pageIndex: 0,
-      }
+      },
     }
   })
 
@@ -101,7 +114,19 @@ export default function BookListingPage() {
               {value: "title", label: "Sort by: Title"},
               {value: "firstPublishedDate", label: "Sort by: Published Date"},
               {value: "author", label: "Sort by: Author"},
+              {value: "price", label: "Sort by: Price"},
             ]}
+            leftSection={<div className="tw-cursor-pointer hover:tw-border" onClick={() => {
+              table.setSorting([
+                {
+                  id: sorting[0]?.id,
+                  desc: !(sorting[0]?.desc)
+                }
+              ])
+            }}>
+              {sorting[0]?.desc && <ArrowUp className="tw-w-4 tw-h-4"/>}
+              {!(sorting[0]?.desc) && <ArrowDown className="tw-w-4 tw-h-4"/>}
+            </div>}
             className="tw-w-full sm:tw-w-[250px]"
             onChange={(value) => {
               if (value) {
