@@ -20,7 +20,7 @@ const CartButton: React.FC<CartButtonProps> = (props) => {
         className="tw-absolute tw-top-[-10px] tw-right-[-12px]">
         {count}
       </Badge>}
-      <ShoppingCart/>
+      <ShoppingCart className="hover:tw-animate-bounce" />
     </Link>
   );
 }

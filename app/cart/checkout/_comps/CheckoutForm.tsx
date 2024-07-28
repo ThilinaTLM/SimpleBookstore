@@ -6,8 +6,8 @@ import {zodResolver} from 'mantine-form-zod-resolver';
 import {z} from 'zod';
 import {Box, Button, Group, Select, Text, TextInput, Title} from '@mantine/core';
 import {useCartStore} from '@/store/cartStore';
-import {notifySuccess} from "@/lib/notification";
 import MultiColumnLayout from "@/components/layout/MultiColumnLayout";
+import {useRouter} from "next/navigation";
 
 const checkoutFormSchema = z.object({
   fullName: z
@@ -51,7 +51,8 @@ export type CheckoutFormProps = {
 };
 
 const CheckoutForm: React.FC<CheckoutFormProps> = (props) => {
-  const {totalPrice, clearCart} = useCartStore();
+  const {totalPrice} = useCartStore();
+  const router = useRouter();
 
   const form = useForm({
     initialValues: {
@@ -176,9 +177,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = (props) => {
           <Text>Total: ${totalPrice.toFixed(2)}</Text>
         </Box>
 
-        <Button type="submit" fullWidth className="tw-mt-4">
-          Place Order
-        </Button>
+        <div className="tw-flex tw-flex-row tw-justify-end tw-space-x-2">
+          <Button type="button" variant="outline" onClick={() => {
+            void router.push('/cart');
+          }}>
+            Cancel
+          </Button>
+          <Button type="submit">
+            Place Order
+          </Button>
+        </div>
       </form>
     </Box>
   );
