@@ -1,12 +1,14 @@
 "use client"
 
-import {Button, Container, Grid, Text, Title} from "@mantine/core";
+import {Button, Container, Grid, Text} from "@mantine/core";
 import {useCartStore} from "@/store/cartStore";
-import CartItemCard from "@/components/CartItemCard";
+import CartItemCard from "@/components/cards/CartItemCard";
 import {formatPrice} from "@/lib/format";
+import {useRouter} from "next/navigation";
 
 export default function CartPage() {
-  const {items, totalPrice, removeItem, updateQuantity} = useCartStore();
+  const navigate = useRouter();
+  const {items, totalPrice} = useCartStore();
 
   return (
     <Container>
@@ -26,7 +28,9 @@ export default function CartPage() {
             <Text size="lg" fw="bold" className="tw-mb-6">
               Total: {formatPrice(totalPrice)}
             </Text>
-            <Button>
+            <Button onClick={() => {
+              void navigate.push("/cart/checkout")
+            }}>
               Proceed to Checkout
             </Button>
           </div>

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
 
 
   return (
-    <div className="tw-mt-[30rem] tw-border-t tw-border-gray-200">
+    <div className="tw-mt-8 tw-border-t tw-border-gray-200">
       <Container className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-py-4">
         <Text c={"gray"} size={"sm"}>
           &copy; 2024 Bookstore. All rights reserved.

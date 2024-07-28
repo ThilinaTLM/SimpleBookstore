@@ -3,7 +3,7 @@
 import {Container, Group} from '@mantine/core';
 import BookStoreLogo from "@/components/layout/BookStoreLogo";
 import React from "react";
-import CartButton from "@/components/CartButton";
+import CartButton from "@/components/button/CartButton";
 
 const Header: React.FC = () => {
   return (

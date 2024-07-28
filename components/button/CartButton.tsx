@@ -16,7 +16,7 @@ const CartButton: React.FC<CartButtonProps> = (props) => {
   return (
     <Link className={cn("tw-relative", props.className)} href={'/cart'}>
       {(count > 0) && <Badge
-        size="xs" circle
+        size="sm" circle
         className="tw-absolute tw-top-[-10px] tw-right-[-12px]">
         {count}
       </Badge>}

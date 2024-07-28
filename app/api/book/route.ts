@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const books: Book[] = response.body.docs.map((book: any) => ({
+  const books: Book[] = response.body.docs.slice(0, 100).map((book: any) => ({
     olid: book.key ? book.key.split('/').pop() : "Unknown",
     title: book.title,
     type: book.type,

@@ -1,6 +1,6 @@
 import React from "react";
 import {CartItem, useCartStore} from "@/store/cartStore";
-import BookCard from "@/components/BookCard";
+import BookCard from "@/components/cards/BookCard";
 import {Button, NumberInput, Text} from "@mantine/core";
 import {formatPrice} from "@/lib/format";
 

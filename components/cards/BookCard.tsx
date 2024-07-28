@@ -2,6 +2,8 @@ import React from "react";
 import {Badge, Button, Card, Group, Text} from '@mantine/core';
 import {Book} from "@/models/book";
 import {cn} from "@/lib/tw";
+import {notifications} from "@mantine/notifications";
+import {CheckIcon} from "lucide-react";
 
 export type BookCardProps = Book & {
   onAddToCart?: (book: Book) => void;
@@ -34,7 +36,17 @@ const BookCard: React.FC<BookCardProps> = (props) => {
 
         {props.onAddToCart && <Button
             color="blue" fullWidth mt="md" radius="md"
-            onClick={() => props.onAddToCart && props.onAddToCart(props)}>
+            onClick={() => {
+              notifications.show({
+                title: 'Cart',
+                message: 'Added to cart!',
+                withCloseButton: false,
+                withBorder: true,
+                variant: 'filled',
+                icon: <CheckIcon />,
+              })
+              props.onAddToCart?.(props)
+            }}>
           Add to Cart
         </Button>}
       </div>

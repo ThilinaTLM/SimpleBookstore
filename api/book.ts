@@ -13,13 +13,15 @@ export type StandardResponse<T> = {
   data: T;
 }
 
+export type BookQuery = {
+  title?: string
+}
+
 const bookApi = {
   book: {
-    getBooks: () => {
+    getBooks: (query?: BookQuery) => {
       return bookClient.get<StandardResponse<Book[]>>("/api/book", {
-        query: {
-          title: "The Lord of the Rings"
-        }
+        query
       });
     }
   }
