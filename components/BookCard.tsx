@@ -2,7 +2,9 @@ import React from "react";
 import {Badge, Button, Card, Group, Text} from '@mantine/core';
 import {Book} from "@/models/book";
 
-export type BookCardProps = Book;
+export type BookCardProps = Book & {
+  onAddToCart?: (book: Book) => void;
+};
 
 const BookCard: React.FC<BookCardProps> = (props) => {
   return (
@@ -28,9 +30,11 @@ const BookCard: React.FC<BookCardProps> = (props) => {
           Authors: {props.authors.join(", ")}
         </Text>
 
-        <Button color="blue" fullWidth mt="md" radius="md">
+        {props.onAddToCart && <Button
+            color="blue" fullWidth mt="md" radius="md"
+            onClick={() => props.onAddToCart && props.onAddToCart(props)}>
           Add to Cart
-        </Button>
+        </Button>}
       </div>
     </Card>
   );

@@ -1,6 +1,6 @@
 "use client"
 
-import {Container, Group, Text} from '@mantine/core';
+import {Container, Group} from '@mantine/core';
 import BookStoreLogo from "@/components/layout/BookStoreLogo";
 import React from "react";
 import CartButton from "@/components/CartButton";
